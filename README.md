@@ -1,4 +1,27 @@
 # DC Deckbuilding Card Builder
+```
+root/
+|
+|- data/
+|  |
+|  |- images/
+|  |- spreadsheet.csv
+|  |- config.yaml
+|
+|- resources/
+|  |
+|  |- cardframes/
+|  |- costs/
+|  |- fonts/
+|  |- vps/
+|  |- blank.png
+|  |- blank2.png
+|
+|- README.md
+|- functions.py
+|- start.py
+
+```
 
 ## config.yaml
   * pathToCSV -- releative path the to comma separated values file for the deck.
