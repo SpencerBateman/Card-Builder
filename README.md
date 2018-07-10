@@ -20,6 +20,7 @@ root/
 |- README.md
 |- functions.py
 |- start.py
+|- .gitingore
 
 ```
 
