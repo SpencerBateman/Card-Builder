@@ -2,68 +2,74 @@ from PIL import Image
 from PIL import ImageFont
 from PIL import ImageDraw
 import math
+import yaml
+
+config = yaml.load(open('config.yaml'))
 
 # Takes in the card position in the printed list of cards and returns its
 # coords for the printable page
 def getCardPrintPosition(cardNumber):
+    baseXShift = 120
+    baseYShift = 70
     coords = (0,0)
     if cardNumber % 9 == 0:
-        coords = (0,0)
+        coords = (baseXShift + 0, baseYShift + 0)
     if cardNumber % 9 == 1:
-        coords = (755,0)
+        coords = (baseXShift + 755, baseYShift + 0)
     if cardNumber % 9 == 2:
-        coords = (1510,0)
+        coords = (baseXShift + 1510, baseYShift + 0)
     if cardNumber % 9 == 3:
-        coords = (0,1050)
+        coords = (baseXShift + 0, baseYShift + 1050)
     if cardNumber % 9 == 4:
-        coords = (755,1050)
+        coords = (baseXShift + 755, baseYShift + 1050)
     if cardNumber % 9 == 5:
-        coords = (1510,1050)
+        coords = (baseXShift + 1510,baseYShift + 1050)
     if cardNumber % 9 == 6:
-        coords = (0,2100)
+        coords = (baseXShift + 0, baseYShift + 2100)
     if cardNumber % 9 == 7:
-        coords = (755,2100)
+        coords = (baseXShift + 755, baseYShift + 2100)
     if cardNumber % 9 == 8:
-        coords = (1510,2100)
+        coords = (baseXShift + 1510, baseYShift + 2100)
     return coords
 
 def getCardFrameandColor(type):
     title_color = (255,255,255)
-    if (type == 'Equipment'):
-        cardframe = Image.open('resources/cardframes/eqframe.png')
+    if (type == config['equipment']):
+        cardframe = Image.open('resources/cardframes/' + config['equipmentPath'])
         card_text_color = (0,0,0)
-    if (type == 'Villain'):
-        cardframe = Image.open('resources/cardframes/villainframe.png')
+    if (type == config['villain']):
+        cardframe = Image.open('resources/cardframes/' + config['villainPath'])
         title_color = (192,22,28)
         card_text_color = (0,0,0)
-    if (type == 'Super Power'):
-        cardframe = Image.open('resources/cardframes/spframe.png')
+    if (type == config['superpower']):
+        cardframe = Image.open('resources/cardframes/' + config['superpowerPath'])
         title_color = (240,130,33)
         card_text_color = (0,0,0)
-    if (type == 'Hero'):
-        cardframe = Image.open('resources/cardframes/heroframe.png')
+    if (type == config['hero']):
+        cardframe = Image.open('resources/cardframes/' + config['heroPath'])
         title_color = (0,174,239)
         card_text_color = (0,0,0)
-    if (type == 'Location'):
-        cardframe = Image.open('resources/cardframes/locframe.png')
+    if (type == config['location']):
+        cardframe = Image.open('resources/cardframes/' + config['locationPath'])
         title_color = (244,15,144)
         card_text_color = (0,0,0)
-    if (type == 'Super Villain'):
-        cardframe = Image.open('resources/cardframes/supervillain.png')
+    if (type == config['supervillain']):
+        cardframe = Image.open('resources/cardframes/' + config['supervillainPath'])
+        # cardframe = Image.open('resources/cardframes/supervillain1.png')
         title_color = (192,22,28)
         card_text_color = (255,255,255)
-    if (type == 'Super Location'):
+    if (type == config['superlocation']):
         cardframe = Image.open('resources/cardframes/superlocation.png')
         title_color = (244,15,144)
         card_text_color = (255,255,255)
-    if (type == 'Super Equipment'):
+    if (type == config['superequipment']):
         cardframe = Image.open('resources/cardframes/superequipment.png')
         card_text_color = (255,255,255)
     return [title_color, card_text_color, cardframe]
 
-
 ## Takes in all of the nessesary info for the card and then returns an image
 def makeCard(name, cost, type, text, vp, image):
+    # background = Image.open('resources/blank2.png')
     background = Image.open('resources/blank.png')
     cardColorInfo = getCardFrameandColor(type)
 
@@ -81,10 +87,13 @@ def makeCard(name, cost, type, text, vp, image):
     for line in lines:
         if line[:3] == '<b>':
             line = line[3:-4]
-            font = ImageFont.truetype("resources/fonts/TradeGothicLTStd-Bold.otf", 30)
+            font = ImageFont.truetype("resources/fonts/TradeGothicLTStd-Bold.otf", 26)
         else:
-            font = ImageFont.truetype("resources/fonts/TradeGothicLTStd.otf", 30)
-        text_applied.text((50, (linecounter * 34) -10 ), line, cardColorInfo[1], font=font)
+            for ch in ['<c>']:
+                if ch in line:
+                    line = line.replace(ch,',')
+            font = ImageFont.truetype("resources/fonts/TradeGothicLTStd.otf", 26)
+        text_applied.text((40, (linecounter * 34) - 15 ), line, cardColorInfo[1], font=font)
         linecounter = linecounter + 1
 
     ## Add Cost
@@ -94,7 +103,7 @@ def makeCard(name, cost, type, text, vp, image):
     vp = Image.open('resources/vps/' + vp.strip() + '.png')
 
     ## Define card art
-    picture = Image.open('resources/images/' + image.strip()).convert("RGBA")
+    picture = Image.open('resources/' + config['imagepath']+ image.strip()).convert("RGBA")
     baseheight = 600
     hpercent = (baseheight / float(picture.size[1]))
     wsize = int((float(picture.size[0]) * float(hpercent)))
