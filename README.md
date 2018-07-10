@@ -31,4 +31,8 @@
 
 ## TODO
   * Higher res cards at proper size.
-  * Handle bold and unbold at the same time.
+  * Handle bold and unbold on the same line
+  * Fix typographic line spacing to be more like original cards.
+  * Back card title with black backing title text
+  * Add set button customization
+  * Add ip button customization
