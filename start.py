@@ -5,6 +5,7 @@ import csv
 import progressbar
 import sys
 import yaml
+import os
 from functions import getCardPrintPosition, makeCard, getPrintPages
 
 config = yaml.load(open('config.yaml'))
@@ -33,9 +34,6 @@ bar.start()
 
 for line in linesToPrint:
 
-    # ## Make sure we only print the correct number of unique cards
-    # while countDown > 0:
-
     # Split the values at the comma
     line_array = line.split(',')
 
@@ -63,8 +61,10 @@ secondBar = progressbar.ProgressBar(maxval=len(pages), \
     widgets=[progressbar.Bar('=', '[', ']'), ' ', progressbar.Percentage()])
 secondBar.start()
 for page in pages:
-    page.save('deck/' + str(i) + '.png')
+    if not os.path.exists(config['outputDir']):
+        os.makedirs(config['outputDir'])
+    page.save(config['outputDir'] + '/' + str(i) + '.png')
     i = i + 1
-    page.show()
+    # page.show()
     secondBar.update(i)
 secondBar.finish()

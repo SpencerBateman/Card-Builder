@@ -1,5 +1,3 @@
-pathToCSV: "avengers/print-t.csv"
-firstCellToIgnore: "Card Name"
 villain: 'Villain'
 villainPath: 'villainframe.png'
 hero: 'Hero'
@@ -14,12 +12,15 @@ supervillain: 'Super Villain'
 supervillainPath: 'supervillain.png'
 superlocation: 'Super Location'
 superequipment: 'Super Equipment'
+
+pathToCSV: "avengers/print-t.csv"
 imagepath: 'images/'
 rowsToPrint: 74
-#rowsToPrint: 3
 startPrintLine: 2
 range: True
+outputDir: 'deck'
 cardsToPrint:
+  - 29
   - 30
   - 31
   - 32
@@ -37,3 +38,4 @@ cardsToPrint:
   - 41
   - 37
   - 63
+  - 73
