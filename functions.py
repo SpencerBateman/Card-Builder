@@ -103,7 +103,7 @@ def makeCard(name, cost, type, text, vp, image):
     vp = Image.open('resources/vps/' + vp.strip() + '.png')
 
     ## Define card art
-    picture = Image.open('resources/' + config['imagepath']+ image.strip()).convert("RGBA")
+    picture = Image.open('data/' + config['imagepath'] + '/' + image.strip()).convert("RGBA")
     baseheight = 600
     hpercent = (baseheight / float(picture.size[1]))
     wsize = int((float(picture.size[0]) * float(hpercent)))
