@@ -8,3 +8,5 @@ card_assets.psd
 playables.psd
 test.psd
 *.pyc
+sunnyconfig.yaml
+data/IASIPGAME.csv

@@ -8,7 +8,7 @@ import yaml
 import os
 from functions import getCardPrintPosition, makeCard, getPrintPages
 
-config = yaml.load(open('config.yaml'))
+config = yaml.load(open('data/config.yaml'))
 
 # number_of_rows_printed = config['rowsToPrint']
 

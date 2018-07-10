@@ -4,7 +4,7 @@ from PIL import ImageDraw
 import math
 import yaml
 
-config = yaml.load(open('config.yaml'))
+config = yaml.load(open('data/config.yaml'))
 
 # Takes in the card position in the printed list of cards and returns its
 # coords for the printable page
