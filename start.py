@@ -10,14 +10,14 @@ from functions import getCardPrintPosition, makeCard, getPrintPages
 
 config = yaml.load(open('data/config.yaml'))
 
-# number_of_rows_printed = config['rowsToPrint']
-
 row_number = 0
 list_of_cards = []
 print 'building cards'
 
 spreadsheet = open(config['pathToCSV']);
+print spreadsheet
 spreadsheet = spreadsheet.readlines()
+print len(spreadsheet)
 
 ## Remove header
 spreadsheet.pop(config['startPrintLine'] - 2)

@@ -12,30 +12,13 @@ supervillain: 'Super Villain'
 supervillainPath: 'supervillain.png'
 superlocation: 'Super Location'
 superequipment: 'Super Equipment'
-
 pathToCSV: "avengers/print-t.csv"
 imagepath: 'images/'
-rowsToPrint: 74
 startPrintLine: 2
 range: True
 outputDir: 'deck'
 cardsToPrint:
-  - 29
-  - 30
-  - 31
-  - 32
-  - 33
-  - 8
-  - 61
-  - 65
-  - 4
+  - 5
   - 46
-  - 47
-  - 23
-  - 28
-  - 11
-  - 60
-  - 41
-  - 37
-  - 63
-  - 73
+  - 50
+  - 57
