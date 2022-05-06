@@ -12,7 +12,7 @@ config = yaml.load(open('data/config.yaml'))
 
 row_number = 0
 list_of_cards = []
-print 'building cards'
+print('building cards')
 
 spreadsheet = open(config['pathToCSV']);
 print spreadsheet
